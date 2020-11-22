@@ -103,6 +103,8 @@ public class spartanTestWithParameters {
         Response response = given().accept(ContentType.JSON)
                 .and().queryParams(queryMap)
                 .when().get("/api/spartans/search");
+        response.prettyPrint();
+
         Assert.assertEquals(response.statusCode(), 200);
         Assert.assertEquals(response.contentType(), "application/json;charset=UTF-8");
         Assert.assertTrue(response.body().asString().contains("Female"));

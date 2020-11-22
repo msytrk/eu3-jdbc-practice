@@ -67,6 +67,7 @@ public class spartanGetRequest {
         Assert.assertEquals(response.contentType(), "text/plain;charset=UTF-8");
         //header should contain date
         Assert.assertTrue(response.headers().hasHeaderWithName("Date"));
+        System.out.println("response.headers().hasHeaderWithName(\"Date\") = " + response.headers().hasHeaderWithName("Date"));
         System.out.println("response.header(\"Date\") = " + response.header("Date"));
         //Content-Length should be 17
         System.out.println("response.header(\"Content-Length\") = " + response.header("Content-Length"));
