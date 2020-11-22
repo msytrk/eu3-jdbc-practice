@@ -1,4 +1,5 @@
-package apitests;
+package apitests.Day2;
+
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -16,9 +17,10 @@ import static org.testng.Assert.*;
 public class spartanTestWithParameters {
 
     @BeforeClass
-    public void beforeclass(){
-        baseURI="http://3.80.189.73:8000";
+    public void beforeclass() {
+        baseURI = "http://3.80.189.73:8000";
     }
+
     /*
           Given accept type is Json
           And Id parameter value is 5
@@ -26,16 +28,18 @@ public class spartanTestWithParameters {
           Then response status code should be 200
           And response content-type: application/json;charset=UTF-8
           And "Blythe" should be in response payload
+
+          Payload measn body
        */
     @Test
-    public void getSpartanID_Positive_PathParam(){
+    public void getSpartanID_Positive_PathParam() {
         Response response = given().accept(ContentType.JSON)
-                .and().pathParam("id",5)
+                .and().pathParam("id", 5)
                 .when().get("/api/spartans/{id}");
 
-        assertEquals(response.statusCode(),200);
+        assertEquals(response.statusCode(), 200);
 
-        assertEquals(response.contentType(),"application/json;charset=UTF-8");
+        assertEquals(response.contentType(), "application/json;charset=UTF-8");
 
         assertTrue(response.body().asString().contains("Blythe"));
     }
@@ -51,15 +55,15 @@ public class spartanTestWithParameters {
      */
 
     @Test
-    public void getSpartanID_Negative_PathParam(){
+    public void getSpartanID_Negative_PathParam() {
         Response response = given().accept(ContentType.JSON)
-                .and().pathParam("id",500)
+                .and().pathParam("id", 500)
 
                 .when().get("/api/spartans/{id}");
 
-        assertEquals(response.statusCode(),404);
+        assertEquals(response.statusCode(), 404);
 
-        assertEquals(response.contentType(),"application/json;charset=UTF-8");
+        assertEquals(response.contentType(), "application/json;charset=UTF-8");
 
         assertTrue(response.body().asString().contains("Spartan Not Found"));
     }
@@ -77,13 +81,13 @@ public class spartanTestWithParameters {
      */
 
     @Test
-    public void positiveTestWithQueryparam(){
+    public void positiveTestWithQueryparam() {
         Response response = given().accept(ContentType.JSON)
-                .and().queryParam("gender","Female")
-                .and().queryParam("nameContains","e")
+                .and().queryParam("gender", "Female")
+                .and().queryParam("nameContains", "e")
                 .when().get("/api/spartans/search");
-        Assert.assertEquals(response.statusCode(),200);
-        Assert.assertEquals(response.contentType(),"application/json;charset=UTF-8");
+        Assert.assertEquals(response.statusCode(), 200);
+        Assert.assertEquals(response.contentType(), "application/json;charset=UTF-8");
         Assert.assertTrue(response.body().asString().contains("Female"));
         Assert.assertTrue(response.body().asString().contains("Janette"));
 
@@ -91,20 +95,18 @@ public class spartanTestWithParameters {
 
 
     @Test
-    public void positiveTestWithQueryParamsMap(){
+    public void positiveTestWithQueryParamsMap() {
         //create a map
-        Map<String,Object> queryMap=new HashMap<>();
-        queryMap.put("gender","Female");
-        queryMap.put("nameContains ","e");
-        Response response=given().accept(ContentType.JSON)
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("gender", "Female");
+        queryMap.put("nameContains ", "e");
+        Response response = given().accept(ContentType.JSON)
                 .and().queryParams(queryMap)
                 .when().get("/api/spartans/search");
-        Assert.assertEquals(response.statusCode(),200);
-        Assert.assertEquals(response.contentType(),"application/json;charset=UTF-8");
+        Assert.assertEquals(response.statusCode(), 200);
+        Assert.assertEquals(response.contentType(), "application/json;charset=UTF-8");
         Assert.assertTrue(response.body().asString().contains("Female"));
         Assert.assertTrue(response.body().asString().contains("Janette"));
-
-
 
 
     }

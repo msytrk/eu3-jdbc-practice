@@ -1,4 +1,4 @@
-package apitests;
+package apitests.Day1;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -19,7 +19,6 @@ public class simpleGetRequest {
         System.out.println("response.getStatusCode() = " + response.getStatusCode());
         //same with
         System.out.println("response.statusCode() = " + response.statusCode());
-
         response.prettyPrint();
     }
     @Test
@@ -49,7 +48,6 @@ public class simpleGetRequest {
         Then response status code must be 200
         and body is json format
         */
-
         RestAssured.given().accept(ContentType.JSON)
                     .when().get(hrUrl)
                     .then()
