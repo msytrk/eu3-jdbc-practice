@@ -35,7 +35,7 @@ Q1:
 - And Content - Type is Json
 - And country_id is US
 - And Country_name is United States of America
-- And Region_id is
+- And Region_id is 2
 
     */
     @Test
@@ -53,7 +53,7 @@ Q1:
         assertEquals(response.path("country_name"),"United States of America");
         // Verify all region_id  equals 2
         int id=response.path("region_id");
-        assertEquals(id,2);
+        assertEquals(response.path("region_id"),(Integer)2);
 
 
     }
@@ -93,8 +93,7 @@ Q2:
             assertTrue(job_ID.startsWith("SA"));
         }
         //Count is 25
-        System.out.println("job_IDs.size() = " + job_IDs.size());
-        assertEquals(job_IDs.size(),25);
+        assertEquals(response.path("count"),(Integer)25);
 
     }
 
@@ -130,8 +129,7 @@ Australia,China,India,Japan,Malaysia,Singapore
             assertEquals(regID,(Integer)3);
         }
         //Count is 6
-        System.out.println("regIDs.size() = " + regIDs.size());
-        assertEquals(regIDs.size(),6);
+        assertEquals(jsonPath.getInt("count"),6);
         // And hasMore is false
         System.out.println("response.path(\"hasMore\") = " + response.path("hasMore").toString());
         assertFalse(response.path("hasMore"));
