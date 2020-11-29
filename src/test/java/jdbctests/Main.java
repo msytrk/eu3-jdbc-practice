@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        String dbUrl = "jdbc:oracle:thin:@107.21.153.23:1521:xe";
+        String dbUrl = "jdbc:oracle:thin:@3.92.52.96:1521:xe";
         String dbUsername = "hr";
         String dbPassword = "hr";
 
@@ -16,6 +16,7 @@ public class Main {
         Statement statement=connection.createStatement();
 
         //run query and get the result in resultSet Object
+
         ResultSet resultSet=statement.executeQuery("Select first_name,last_name,salary from employees");
 
 
