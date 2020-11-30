@@ -99,6 +99,10 @@ public class jdbc_example {
 
         System.out.println("rsMetData.getColumnName(1) = " + rsMetData.getColumnName(1));
 
+        //Table name
+
+        System.out.println("rsMetData.TableName(2) = " + rsMetData.getSchemaName(2));
+
         for (int i = 1; i <=rsMetData.getColumnCount(); i++) {
             System.out.println("rsMetData.getColumnName(1) = " + rsMetData.getColumnName(i));
         }

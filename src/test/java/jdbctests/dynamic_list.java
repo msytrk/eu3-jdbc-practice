@@ -31,6 +31,7 @@ public class dynamic_list {
         //number of columns
         int colCount = rsMetadata.getColumnCount();
 
+
         //loop through each row
         while(resultSet.next()){
             Map<String,Object> row = new HashMap<>();

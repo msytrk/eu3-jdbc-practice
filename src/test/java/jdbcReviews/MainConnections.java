@@ -8,7 +8,7 @@ public class MainConnections {
     @Test
     public void test1() throws SQLException {
 
-        String dbUrl = "jdbc:oracle:thin:@107.21.153.23:1521:xe";
+        String dbUrl = "jdbc:oracle:thin:@3.92.52.96:1521:xe";
 
         String dbUser="hr";
         String dbpassWord="hr";
@@ -30,7 +30,9 @@ public class MainConnections {
         System.out.println("resultSet.getArray(2) = " + resultSet.getString(2));
 
         resultSet.last();
-        System.out.println("resultSet.relative(1) = " + resultSet.relative(1));
+        System.out.println("resultSet.relative(1) = " + resultSet.relative(-1));
+        System.out.println("resultSet.getRow() = " + resultSet.getRow());
+
 
         System.out.println("resultSet.getRow() = " + resultSet.getRow());
 
