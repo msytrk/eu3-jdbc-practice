@@ -1,9 +1,13 @@
 
-package apitests.Day6;
+package apitests.Day6.Regions;
 
-import java.util.List;
+
+import apitests.Day6.Spartan.Item;
+import apitests.Day6.Spartan.Link_;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class Regions {
 

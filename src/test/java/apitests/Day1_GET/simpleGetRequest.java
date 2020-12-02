@@ -1,4 +1,4 @@
-package apitests.Day1;
+package apitests.Day1_GET;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 //static import for RestAssured
-import static io.restassured.RestAssured.*;
+
 public class simpleGetRequest {
 
     String hrUrl = "http://107.21.153.23:1000/ords/hr/regions";

@@ -1,7 +1,8 @@
 
-package apitests.Day6;
+package apitests.Day6.Spartan;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

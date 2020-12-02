@@ -1,31 +1,65 @@
 package apitests.Day6;
 
-import io.restassured.http.ContentType;
+import apitests.Day6.Regions.Regions;
+import apitests.Day6.Spartan.Item;
+import apitests.Day6.Spartan.Spartan;
+import com.google.gson.Gson;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-import utilities.ConfigurationReader;
+
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.*;
 public class Pojo_deserialize {
 
     @Test
-    public void oneSpartanPojo() {
-        Response response = given().accept(ContentType.JSON)
-                .pathParam("id", 15)
-                .when().get("http://3.92.52.96:8000/api/spartans/{id}");
+    public void regionToPojo(){
+
+        Response response = when().get("http://52.55.102.92:1000/ords/hr/regions");
+
         assertEquals(response.statusCode(),200);
 
-        //Json to POJO
-        // Json to our Spartan Class
+        //JSON to POJO(regions class)
 
-        Spartan spartan15=response.body().as(Spartan.class);
+        Regions regions = response.body().as(Regions.class);
+
+        System.out.println("regions.getHasMore() = " + regions.getHasMore());
+        System.out.println("regions.getCount() = " + regions.getCount());
+
+        System.out.println(regions.getItems().get(0).getRegionName());
+
+        List<Item> items = regions.getItems();
+
+        System.out.println(items.get(1).getRegionId());
+    }
+
+    @Test
+    public void gson_example(){
+
+        Gson gson = new Gson();
+
+        //JSON to JAva collections or Pojo --> De-serialization
+
+        String myJsonData = "{\n" +
+                "    \"id\": 15,\n" +
+                "    \"name\": \"Meta\",\n" +
+                "    \"gender\": \"Female\",\n" +
+                "    \"phone\": 1938695106\n" +
+                "}";
+
+        Map<String,Object> map = gson.fromJson(myJsonData, Map.class);
+        System.out.println(map);
+
+        Spartan spartan15 = gson.fromJson(myJsonData,Spartan.class);
         System.out.println(spartan15);
-        System.out.println("spartan15.getGender() = " + spartan15.getGender());
-        System.out.println("spartan15.getId() = " + spartan15.getId());
 
-        // asssertion
+        //-----------SERIALIZATION---------------
+        //JAVA Collection or POJO to JSON
+        Spartan spartanEU = new Spartan(200,"Mike","Male","123123123");
 
-        assertEquals(spartan15.getId(),15);
+        String jsonSpartanEU = gson.toJson(spartanEU);
+        System.out.println(jsonSpartanEU);
     }
 }

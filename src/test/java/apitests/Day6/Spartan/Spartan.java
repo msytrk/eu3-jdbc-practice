@@ -1,4 +1,4 @@
-package apitests.Day6;
+package apitests.Day6.Spartan;
 
 /*
     {
